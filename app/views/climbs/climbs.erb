@@ -6,22 +6,4 @@
 
 <br>
 
-<% @climbs.each do |c| %>
-  <p>
-    Route: <%= c.name %>
-    <br>
-    Type: <%= c.type %>
-    <br>
-    Grade: <%= c.grade %>
-    <br>
-    Location: <%= c.location %>
-    <br>
-    Status: <%= c.status %>
-    <br>
-    Notes: <%= c.notes %>
-    <br>
-    <a href="/climbs/edit/<%= @climb.id %>">Edit Climb</a>
-  </p>
-<% end %>
-
 <br><br>
