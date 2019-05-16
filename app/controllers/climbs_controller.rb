@@ -21,7 +21,7 @@ class ClimbsController < ApplicationController
      !logged_in?
      redirect '/climbs/new'
    else
-     @climb = Climb.create(name: params[:name], type: params[:category], grade: params[:grade], location: params[:location], status: params[:status], notes: params[:notes])
+     @climb = Climb.create(name: params[:name], category: params[:category], grade: params[:grade], location: params[:location], status: params[:status], notes: params[:notes])
      @climb.user = User.find_by(params[:id])
      @climb.save
      redirect "/climbs/#{@climb.id}"
@@ -51,7 +51,7 @@ class ClimbsController < ApplicationController
    if params[:name].empty? || params[:category].empty? || params[:grade].empty? || params[:location].empty? || params[:status].empty?
      redirect "/climbs/#{@climb.id}/edit"
    else
-     @climb.update(name: params[:name], type: params[:category], grade: params[:grade], location: params[:location], status: params[:status], notes: params[:notes])
+     @climb.update(name: params[:name], category: params[:category], grade: params[:grade], location: params[:location], status: params[:status], notes: params[:notes])
      @climb.save
      redirect "/climbs/#{@climb.id}"
    end
