@@ -11,7 +11,7 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     if logged_in?
-      erb :'/climbs'
+      erb :'/climbs/climbs'
     else
       erb :index
     end
