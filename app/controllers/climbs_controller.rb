@@ -1,6 +1,7 @@
 class ClimbsController < ApplicationController
   
   get '/climbs' do
+    @climbs = Climb.all
     if logged_in?
       erb :'/climbs/climbs'
     else
