@@ -7,22 +7,17 @@
   <label for="name">Name: </label>
   <input type="text" name="name" id="name" value="<%= @climb.name %>">
   <br>
-  
+  <label for="status">Status: </label>
+  <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Project <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Send <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Flash
+  <br>
   <label for="category">Category: </label>
   <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Boulder <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Sport <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Trad
-  
-  
   <br>
   <label for="grade">Grade: </label>
   <input type="text" name="grade" id="grade" value="<%= @climb.grade %>">
   <br>
   <label for="location">Location: </label>
   <input type="text" name="location" id="location" value="<%= @climb.location %>">
-  <br>
-  
-  <label for="status">Status: </label>
-  <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Project <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Send <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Flash
-  
   <br>
   <label for="notes">Notes: </label>
   <input type="text" name="notes" id="notes" value="<%= @climb.notes %>">
