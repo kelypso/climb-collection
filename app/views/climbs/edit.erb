@@ -1,26 +1,28 @@
 <h1>Edit <%= @climb.name %></h1>
 
-<br>
+<br><br>
 
 <form method="POST" action="/climbs/<%= @climb.id %>">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
   <label for="name">Name: </label>
   <input type="text" name="name" id="name" value="<%= @climb.name %>">
-  <br>
+  <br><br>
   <label for="status">Status: </label>
   <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Project <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Send <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Flash
-  <br>
+  <br><br>
   <label for="category">Category: </label>
   <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Boulder <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Sport <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Trad
-  <br>
+  <br><br>
   <label for="grade">Grade: </label>
   <input type="text" name="grade" id="grade" value="<%= @climb.grade %>">
-  <br>
+  <br><br>
   <label for="location">Location: </label>
   <input type="text" name="location" id="location" value="<%= @climb.location %>">
-  <br>
+  <br><br>
   <label for="notes">Notes: </label>
   <input type="text" name="notes" id="notes" value="<%= @climb.notes %>">
-  <br>
+  <br><br>
   <input type="submit" value="Update" id="submit">
 </form>
+
+<br><br>

@@ -1,49 +1,48 @@
+
 class UsersController < ApplicationController
-  
+
   get '/signup' do
-    if logged_in?
-      @climbs = Climb.all 
-      erb :'climbs/climbs'
-    else
-      erb :'users/signup'
-    end
+    erb :'/users/signup'
   end
 
   post '/signup' do
-    if params[:email].empty? || params[:username].empty? || params[:password].empty?
-      redirect '/signup'
+    if params[:email] == "" || params[:username] == "" || params[:password] == ""
+      redirect '/failure'
     else
-      @user = User.create(email: params[:email], username: params[:username], password: params[:password])
+      User.create(email: params[:email], username: params[:username], password: params[:password])
       session[:user_id] = @user.id
       redirect '/climbs'
     end
   end
 
   get '/login' do
-    if !logged_in?
-      erb :'/users/login'
+    erb :'/users/login'
+  end
+
+  get '/failure' do
+    erb :'/users/failure'
+  end
+
+  post "/login" do
+    if params[:username] == "" || params[:password] == ""
+      redirect '/failure'
     else
-      erb :'climbs/climbs'
+      login(params[:username], params[:password])    
     end
   end
 
-  post '/login' do
-    @user = User.find_by(params[:id])
-    if @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-      redirect '/climbs'
+  get "/account" do
+    if  !logged_in?
+      redirect '/failure'    
     else
-      redirect '/login'
+      @user = User.find(session[:user_id])
+      erb :'/users/account'
     end
   end
 
   get '/logout' do
-    if logged_in?
-      session.clear
-      redirect '/'
-    else
-      redirect '/'
-    end
+    session.clear
+    redirect '/'
   end
-  
+    
 end
