@@ -55,7 +55,7 @@ class ClimbsController < ApplicationController
         @climb.save
         redirect "/climbs/#{@climb.id}"
       else
-        redirect "/climbs/#{@climb.id}"
+        redirect "/users/failure"
       end
     end
   end
