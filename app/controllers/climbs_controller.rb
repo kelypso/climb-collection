@@ -19,7 +19,7 @@ class ClimbsController < ApplicationController
 
  post '/climbs' do
    if params[:name].empty? || params[:location].empty? || params[:status].empty?
-     redirect '/climbs/new'
+     redirect '/failure'
    else
      @climb = Climb.create(name: params[:name], category: params[:category], grade: params[:grade], location: params[:location], status: params[:status], notes: params[:notes])
      @climb.user = User.find_by(params[:id])

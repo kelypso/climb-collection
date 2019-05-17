@@ -27,11 +27,15 @@
   <textarea id="notes" name="notes" rows="5" cols="30" placeholder="Enter notes here" value="<%= @climb.notes %>"></textarea>
   <br><br>
   <input type="submit" value="Update" id="submit">
-</form>
+</form> 
+
 <form method="POST" action="/climbs/<%= @climb.id %>/delete">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete">
 </form>
-<a href="/account">My Account</a>
 
 <br><br>
+
+<a href="/account">Return to Account</a>
+
+<br>
