@@ -13,18 +13,18 @@
   <label for="location">Location: </label>
   <input type="text" name="location" id="location" placeholder="crag, city, state" value="<%= @climb.location %>">
   <br><br>
-  <label for="status">Status: </label>
-  <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Project 
-  <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Send 
+  <label for="status">Status: </label> <br>
+  <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Project <br>
+  <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Send <br>
   <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Flash
   <br><br>
-  <label for="category">Category: </label>
-  <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Boulder 
-  <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Sport 
+  <label for="category">Category: </label> <br>
+  <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Boulder <br>
+  <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Sport <br>
   <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Trad
   <br><br>
   <label for="notes">Notes: </label>
-  <textarea id="notes" name="climb[notes]" rows="5" cols="30" placeholder="Enter notes here" value="<%= @climb.notes %>"></textarea>
+  <textarea id="notes" name="notes" rows="5" cols="30" placeholder="Enter notes here" value="<%= @climb.notes %>"></textarea>
   <br><br>
   <input type="submit" value="Update" id="submit">
 </form>
