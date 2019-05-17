@@ -6,21 +6,26 @@
   <label for="name">Name: </label>
   <input type="text" name="name" id="name">
   <br><br>
-  <label for="status">Status: </label>
-  <input type="radio" name="status" id="status" value="project"> Project <input type="radio" name="status" id="status" value="send"> Send <input type="radio" name="status" id="status" value="Flash"> Flash
-  <br><br>
-  <label for="category">Category: </label>
-  <input type="radio" name="category" id="category" value="boulder"> Boulder <input type="radio" name="category" id="category" value="sport"> Sport <input type="radio" name="category" id="category" value="trad"> Trad
-  <br><br>
   <label for="grade">Grade: </label>
   <input type="text" name="grade" id="grade">
   <br><br>
   <label for="location">Location: </label>
-  <input type="text" name="location" id="location"> (crag, city, state)
+  <input type="text" name="location" id="location" placeholder="crag, city, state">
+  <br><br>
+  <label for="status">Status: </label>  <br>
+  <input type="radio" name="status" id="status" value="project"> Project <br>
+  <input type="radio" name="status" id="status" value="send"> Send <br>
+  <input type="radio" name="status" id="status" value="Flash"> Flash
+  <br><br>
+  <label for="category">Category: </label>  <br>
+  <input type="radio" name="category" id="category" value="boulder"> Boulder <br>
+  <input type="radio" name="category" id="category" value="sport"> Sport <br>
+  <input type="radio" name="category" id="category" value="trad"> Trad
   <br><br>
   <label for="notes">Notes: </label>
-  <input type="text" name="notes" id="notes">
-  <textarea id="notes" name="climb[notes]" rows="5" cols="50" placeholder="Enter notes here"></textarea>
+  <textarea id="notes" name="climb[notes]" rows="5" cols="30" placeholder="Enter notes here"></textarea>
   <br><br>
   <input type="submit" value="Add Climb" id="submit">
 </form>
+
+<br><br>

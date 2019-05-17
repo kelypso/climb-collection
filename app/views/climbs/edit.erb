@@ -7,20 +7,24 @@
   <label for="name">Name: </label>
   <input type="text" name="name" id="name" value="<%= @climb.name %>">
   <br><br>
-  <label for="status">Status: </label>
-  <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Project <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Send <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Flash
-  <br><br>
-  <label for="category">Category: </label>
-  <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Boulder <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Sport <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Trad
-  <br><br>
   <label for="grade">Grade: </label>
   <input type="text" name="grade" id="grade" value="<%= @climb.grade %>">
   <br><br>
   <label for="location">Location: </label>
-  <input type="text" name="location" id="location" value="<%= @climb.location %>">
+  <input type="text" name="location" id="location" placeholder="crag, city, state" value="<%= @climb.location %>">
+  <br><br>
+  <label for="status">Status: </label>
+  <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Project 
+  <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Send 
+  <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Flash
+  <br><br>
+  <label for="category">Category: </label>
+  <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Boulder 
+  <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Sport 
+  <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Trad
   <br><br>
   <label for="notes">Notes: </label>
-  <input type="text" name="notes" id="notes" value="<%= @climb.notes %>">
+  <textarea id="notes" name="climb[notes]" rows="5" cols="30" placeholder="Enter notes here" value="<%= @climb.notes %>"></textarea>
   <br><br>
   <input type="submit" value="Update" id="submit">
 </form>

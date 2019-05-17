@@ -9,7 +9,7 @@
 <h3><%= current_user.username %>'s ClimbTime Collection: </h3>
 
 <% Climb.all.each do |c| %>
-  <%= c.name %> - <em><%= c.status.capitalize %></em> <a href="/climbs/<%= c.id %>">view</a> | <a href="/climbs/<%= c.id %>/edit">edit</a>
+  <%= c.name %> - <em><%= c.status.capitalize %></em> <a href="/climbs/<%= c.id %>">view</a> | <a href="/climbs/<%= c.id %>/edit">edit</a> <br>
 <%end%>
 
 <br>

@@ -9,7 +9,7 @@ class ClimbsController < ApplicationController
     end
   end
   
-  post '/climbs' do
+  post '/climbs/new' do
    if params[:name].empty? || params[:location].empty? || params[:status].empty? # || !logged_in?
      redirect '/climbs/new'
    else
