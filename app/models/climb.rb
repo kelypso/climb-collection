@@ -4,5 +4,5 @@ class Climb < ActiveRecord::Base
   
   belongs_to :user
   
-  validates :name, uniqueness: { case_sensitive: false }
+  validates :name, uniqueness: true
 end
