@@ -28,5 +28,10 @@
   <br><br>
   <input type="submit" value="Update" id="submit">
 </form>
+<form method="POST" action="/climbs/<%= @climb.id %>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete">
+</form>
+<a href="/account">My Account</a>
 
 <br><br>
