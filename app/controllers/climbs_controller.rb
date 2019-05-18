@@ -1,10 +1,10 @@
 class ClimbsController < ApplicationController
     
-  get '/climbs' do
+  get '/home' do # change back to climbs?
     @user = current_user
     @climbs = @user.climbs
     if logged_in?
-      erb :'/users/account'
+      erb :'/users/home'
     else
       redirect '/login'
     end
@@ -26,7 +26,7 @@ class ClimbsController < ApplicationController
       @climb.save
       redirect "/climbs/#{@climb.id}"
     else 
-      flash[:error] = "REQUIRED: Climb name, location, and status."
+      flash[:error] = "ERROR: Enter climb name, location, and status."
       redirect "/climbs/new"
     end
   end

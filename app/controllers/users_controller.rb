@@ -7,11 +7,12 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if params[:email] == "" || params[:username] == "" || params[:password] == ""
-      redirect '/failure'
+      flash[:error] = "ERROR: Please enter email, username, and password to register."
+      redirect "/signup"
     else
       User.create(email: params[:email], username: params[:username], password: params[:password])
       session[:user_id] = @user.id
-      redirect '/climbs'
+      redirect '/home'
     end
   end
 
@@ -25,18 +26,20 @@ class UsersController < ApplicationController
 
   post "/login" do
     if params[:username] == "" || params[:password] == ""
-      redirect '/failure'
+      flash[:error] = "ERROR: Please enter username and password to log in."
+      redirect '/login'
     else
       login(params[:username], params[:password])    
     end
   end
 
-  get "/account" do
+  get "/home" do
     if  !logged_in?
-      redirect '/failure'    
+      flash[:error] = "ERROR: Please log in to view this page."
+      redirect '/login'    
     else
       @user = User.find(session[:user_id])
-      erb :'/users/account'
+      erb :'/users/home'
     end
   end
 

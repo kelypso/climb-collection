@@ -1,4 +1,5 @@
 require './config/environment'
+require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -6,12 +7,13 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "kinectopatronom"
+    set :session_secret, "badbeta"
+    register Sinatra::Flash
   end
 
   get "/" do
     if logged_in?
-      erb :'/users/account'
+      erb :'/users/home'
     else
       erb :index
     end
@@ -27,7 +29,7 @@ class ApplicationController < Sinatra::Base
       @user = User.find_by(username: params[:username])
       if @user && @user.authenticate(params[:password])
         session[:user_id] = @user.id
-        redirect "/account"
+        redirect "/home"
       else
         redirect "/login"
       end
