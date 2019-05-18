@@ -1,7 +1,8 @@
 class ClimbsController < ApplicationController
     
   get '/climbs' do
-    @climbs = Climb.all
+    @user = current_user
+    @climbs = @user.climbs
     if logged_in?
       erb :'/users/account'
     else

@@ -6,7 +6,7 @@
 
 <h3><%= current_user.username %>'s ClimbTime Collection: </h3>
 
-<% Climb.all.each do |c| %>
+<% current_user.climbs.each do |c| %>
   <%= c.name %> - <em><%= c.status.capitalize %></em> <a href="/climbs/<%= c.id %>"><input type="submit" value="View"></a> <a href="/climbs/<%= c.id %>/edit"><input type="submit" value="Edit"></a> <br>
 <%end%>
 

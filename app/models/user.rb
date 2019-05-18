@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   has_many :climbs
   
-  validates :username, uniqueness: { case_sensitive: false }
-  validates :email, uniqueness: {case_sensitive: false }
+  validates :username, uniqueness: true
+  validates :email, uniqueness: true
   validates :username, :email, :password, presence: true
 
   def slug
