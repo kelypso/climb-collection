@@ -20,11 +20,12 @@ class ClimbsController < ApplicationController
   
   post '/climbs' do 
     @user = current_user
+    @climbs = @user.climbs
     if logged_in? && params[:name] != "" && params[:location] != "" && params[:status]  != ""
       @climb = Climb.create(name: params[:name], grade: params[:grade], location: params[:location], status: params[:status], category: params[:category], notes: params[:notes])
       @climb.user = current_user
       @climb.save
-      redirect "/home" # add /climbs/:id once it's working
+      redirect "/climbs/:id" # add /climbs/:id once it's working
     else 
       flash[:error] = "ERROR: Enter climb name, location, and status."
       redirect "/climbs/new"
@@ -32,7 +33,7 @@ class ClimbsController < ApplicationController
   end
   
   get '/climbs/:id' do # should show specific climb page, but keeps showing first climb only
-     @user = current_user
+    @user = current_user
     if !logged_in?
       redirect '/login'
     else
@@ -45,11 +46,10 @@ class ClimbsController < ApplicationController
   end
 
   get '/climbs/:id/edit' do # NOT WORKING
-    @user = current_user
     if !logged_in?
       redirect '/login'
     else
-      if @user = current_user && @climb = @user.climbs.find_by(params[:id]) 
+      if @user = current_user && @climb = current_user.climbs.find_by(params[:id]) 
         erb :'/climbs/edit'
       else
         erb :'/failure'
@@ -65,6 +65,20 @@ class ClimbsController < ApplicationController
       @climb.update(name: params[:name], grade: params[:grade], location: params[:location], status: params[:status], category: params[:category], notes: params[:notes])
       @climb.save
       redirect "/climbs/#{@climb.id}"
+    end
+  end
+  
+  post '/climbs/:id/delete' do
+    if logged_in?
+      @climb = Climb.find_by_id(params[:id])
+      if @climb.user == current_user
+        @climb.delete
+        redirect '/home'
+      else
+        redirect "/climbs/#{@climb.id}"
+      end
+    else
+      redirect '/failure'
     end
   end
 
