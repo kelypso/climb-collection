@@ -1,9 +1,10 @@
 class ClimbsController < ApplicationController
-    
+
   get '/home' do
-    @user = current_user
-    @climbs = @user.climbs
-    if logged_in?
+    if logged_in? && current_user
+      @user = current_user
+      session[:user_id] = @user.id
+      @climbs = @user.climbs
       erb :'/users/home'
     else
       redirect '/login'
@@ -11,10 +12,24 @@ class ClimbsController < ApplicationController
   end
 
   get '/climbs/new' do
-    if logged_in?
+    if logged_in? && current_user
+      @user = current_user
+      session[:user_id] = @user.id
       erb :'climbs/new'
     else
       redirect '/login'
+    end
+  end
+  
+  post '/climbs' do 
+    @user = current_user
+    if logged_in? && params[:name] != "" && params[:location] != "" && params[:status]  != ""
+      @climb = Climb.create(name: params[:name], grade: params[:grade], location: params[:location], status: params[:status], category: params[:category], notes: params[:notes])
+      @user.climbs << @climb
+      redirect "/climbs/#{@climb.id}" # should show new climb, but keeps show first climb only
+    else 
+      flash[:error] = "ERROR: Enter climb name, location, and status."
+      redirect "/climbs/new"
     end
   end
   
@@ -22,7 +37,8 @@ class ClimbsController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      @climb = current_user.climbs.find_by(params[:id]) 
+      @user = current_user
+      @climb = Climb.find_by_id(params[:id]) 
       erb :'/climbs/show'
     end
   end
@@ -33,18 +49,6 @@ class ClimbsController < ApplicationController
     else
       @climb = current_user.climbs.find_by(params[:id]) 
       erb :'/climbs/edit'
-    end
-  end
-  
-  post '/climbs' do 
-    if logged_in? && params[:name] != "" && params[:location] != "" && params[:status]  != ""
-      @climb = Climb.create(name: params[:name], grade: params[:grade], location: params[:location], status: params[:status], category: params[:category], notes: params[:notes])
-      @climb.user = current_user
-      @climb.save
-      redirect "/climbs/:id" # should show new climb, but keeps show first climb only
-    else 
-      flash[:error] = "ERROR: Enter climb name, location, and status."
-      redirect "/climbs/new"
     end
   end
 

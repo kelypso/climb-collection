@@ -1,14 +1,15 @@
-<h1>Welcome, <%= current_user.username %>!</h1>
+<h1>Welcome, <%= @user.username %>!</h1>
 
 <a href="/climbs/new"><input type="submit" value="Add Climb"></a>
 
 <br><br>
 
-<h3><%= current_user.username %>'s ClimbTime Collection: </h3>
+<h3><%= @user.username %>'s ClimbTime Collection: </h3>
 
-<% current_user.climbs.each do |c| %>
+<% @user.climbs.each do |c| %>
   <%= c.name %> - <em><%= c.status.capitalize %></em> <a href="/climbs/<%= c.id %>"><input type="submit" value="View"></a> <a href="/climbs/<%= c.id %>/edit"><input type="submit" value="Edit"></a> <br>
 <%end%>
+
 
 <br><br><br>
 

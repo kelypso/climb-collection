@@ -10,7 +10,8 @@ class UsersController < ApplicationController
       flash[:error] = "ERROR: Please enter email, username, and password to register."
       redirect "/signup"
     else
-      User.create(email: params[:email], username: params[:username], password: params[:password])
+      @user = User.new(email: params[:email], username: params[:username], password: params[:password])
+      @user.save
       session[:user_id] = @user.id
       redirect '/home'
     end
