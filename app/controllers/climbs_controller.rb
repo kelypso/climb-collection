@@ -18,30 +18,12 @@ class ClimbsController < ApplicationController
     end
   end
   
-  post '/climbs' do 
-    @user = current_user
-    @climbs = @user.climbs
-    if logged_in? && params[:name] != "" && params[:location] != "" && params[:status]  != ""
-      @climb = Climb.create(name: params[:name], grade: params[:grade], location: params[:location], status: params[:status], category: params[:category], notes: params[:notes])
-      @climb.user = current_user
-      @climb.save
-      redirect "/climbs/:id" # add /climbs/:id once it's working
-    else 
-      flash[:error] = "ERROR: Enter climb name, location, and status."
-      redirect "/climbs/new"
-    end
-  end
-  
   get '/climbs/:id' do # should show specific climb page, but keeps showing first climb only
-    @user = current_user
     if !logged_in?
       redirect '/login'
     else
-      if @user = current_user && @climb = @user.climbs.find_by(params[:id]) 
-        erb :'/climbs/show'
-      else
-        erb :'/failure'
-      end
+      @climb = current_user.climbs.find_by(params[:id]) 
+      erb :'/climbs/show'
     end
   end
 
@@ -49,11 +31,20 @@ class ClimbsController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      if @user = current_user && @climb = current_user.climbs.find_by(params[:id]) 
-        erb :'/climbs/edit'
-      else
-        erb :'/failure'
-      end
+      @climb = current_user.climbs.find_by(params[:id]) 
+      erb :'/climbs/edit'
+    end
+  end
+  
+  post '/climbs' do 
+    if logged_in? && params[:name] != "" && params[:location] != "" && params[:status]  != ""
+      @climb = Climb.create(name: params[:name], grade: params[:grade], location: params[:location], status: params[:status], category: params[:category], notes: params[:notes])
+      @climb.user = current_user
+      @climb.save
+      redirect "/climbs/:id" # should show new climb, but keeps show first climb only
+    else 
+      flash[:error] = "ERROR: Enter climb name, location, and status."
+      redirect "/climbs/new"
     end
   end
 
