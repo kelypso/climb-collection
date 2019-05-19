@@ -72,14 +72,10 @@ class ClimbsController < ApplicationController
     end
   end
   
-  post '/climbs/:id/delete' do
-    if logged_in?
-      @climb = current_user.climbs.find_by_id(params[:id])
-      @climb.delete
-      redirect '/home'
-    else
-      redirect '/failure'
-    end
+  delete '/climbs/:id/delete' do
+    @climb = Climb.find_by_id(params[:id])
+    @climb.delete
+    redirect '/home'
   end
 
 end
