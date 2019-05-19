@@ -24,7 +24,7 @@ class ClimbsController < ApplicationController
   post '/climbs' do 
     @user = current_user
     if logged_in? && params[:name] != "" && params[:location] != "" && params[:status]  != ""
-      @climb = Climb.create(name: params[:name], grade: params[:grade], location: params[:location], status: params[:status], category: params[:category], notes: params[:notes])
+      @climb = Climb.create(name: params[:name], grade: params[:grade], location: params[:location], category: params[:category], status: params[:status], notes: params[:notes])
       @user.climbs << @climb
       redirect "/climbs/#{@climb.id}"
     else 
@@ -47,15 +47,15 @@ class ClimbsController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      @climb = current_user.climbs.find_by_id(params[:id]) 
+      @climb = current_user.climbs.find_by_id(params[:id])
       erb :'/climbs/edit'
     end
   end
 
-  patch '/climbs/:id' do # NOT WORKING
+  patch '/climbs/:id' do
     @climb = Climb.find_by_id(params[:id])
     if logged_in? && params[:name] != "" && params[:location] != "" && params[:status]  != ""
-      @climb.update(name: params[:name], grade: params[:grade], location: params[:location], status: params[:status], category: params[:category], notes: params[:notes])
+      @climb.update(name: params[:name], grade: params[:grade], location: params[:location], category: params[:category], status: params[:status], notes: params[:notes])
       @climb.save
       redirect "/climbs/#{@climb.id}"
     else 
