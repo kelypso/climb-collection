@@ -1,3 +1,5 @@
+require 'pry'
+
 class ClimbsController < ApplicationController
 
   get '/home' do
@@ -26,7 +28,7 @@ class ClimbsController < ApplicationController
     if logged_in? && params[:name] != "" && params[:location] != "" && params[:status]  != ""
       @climb = Climb.create(name: params[:name], grade: params[:grade], location: params[:location], status: params[:status], category: params[:category], notes: params[:notes])
       @user.climbs << @climb
-      redirect "/climbs/#{@climb.id}" # should show new climb, but keeps show first climb only
+      redirect "/climbs/#{@climb.id}"
     else 
       flash[:error] = "ERROR: Enter climb name, location, and status."
       redirect '/climbs/new'
@@ -53,6 +55,7 @@ class ClimbsController < ApplicationController
   end
 
   patch '/climbs/:id' do # NOT WORKING
+    binding.pry
     @climb = Climb.find_by_id(params[:id])
     if logged_in? && params[:name] != "" && params[:location] != "" && params[:status]  != ""
       @climb.update(name: params[:name], grade: params[:grade], location: params[:location], status: params[:status], category: params[:category], notes: params[:notes])
@@ -66,15 +69,11 @@ class ClimbsController < ApplicationController
   
   post '/climbs/:id/delete' do
     if logged_in?
-      @climb = Climb.find_by_id(params[:id])
-      if @climb.user == current_user
-        @climb.delete
-        redirect '/home'
-      else
-        redirect "/climbs/#{@climb.id}"
-      end
+      @climb = current_user.climbs.find_by_id(params[:id])
+      @climb.delete
+      redirect '/home'
     else
-      redirect '/failure'
+      redirect "/failure"
     end
   end
 
