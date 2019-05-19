@@ -29,7 +29,7 @@ class ClimbsController < ApplicationController
       redirect "/climbs/#{@climb.id}" # should show new climb, but keeps show first climb only
     else 
       flash[:error] = "ERROR: Enter climb name, location, and status."
-      redirect "/climbs/new"
+      redirect '/climbs/new'
     end
   end
   
@@ -54,7 +54,7 @@ class ClimbsController < ApplicationController
 
   patch '/climbs/:id' do # NOT WORKING
     @climb = Climb.find_by_id(params[:id])
-    if logged_in? && params[:name] != "" && params[:location] != "" && params[:status]  != ""
+    if logged_in? # && params[:name] != "" && params[:location] != "" && params[:status]  != ""
       @climb.update(name: params[:name], grade: params[:grade], location: params[:location], status: params[:status], category: params[:category], notes: params[:notes])
       @climb.save
       redirect "/climbs/#{@climb.id}"
