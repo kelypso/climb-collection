@@ -34,6 +34,12 @@ class ClimbsController < ApplicationController
     end
   end
   
+  get '/climbs/all' do 
+    @climbs = Climb.all 
+    @user = User.find(session[:user_id])
+    erb :'/climbs/all'
+  end
+  
   get '/climbs/:id' do
     if !logged_in?
       redirect '/login'
