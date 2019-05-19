@@ -47,19 +47,21 @@ class ClimbsController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      @climb = current_user.climbs.find_by(params[:id]) 
+      @climb = current_user.climbs.find_by_id(params[:id]) 
       erb :'/climbs/edit'
     end
   end
 
   patch '/climbs/:id' do # NOT WORKING
-    @climb = Climb.find_by(params[:id])
-    if params[:name].empty? || params[:location].empty? || params[:status].empty?
-      redirect "/climbs/#{@climb.id}/edit"
-    else
-      @climb.update(name: params[:name], grade: params[:grade], location: params[:location], status: params[:status], category: params[:category], notes: params[:notes])
+    @climb = current_user.climbs.find_by_id(params[:id])
+    if logged_in? && params[:name] != "" && params[:location] != "" && params[:status]  != ""
+      @climb = Climb.update(name: params[:name], grade: params[:grade], location: params[:location], status: params[:status], category: params[:category], notes: params[:notes])
       @climb.save
+      @user.climbs << @climb
       redirect "/climbs/#{@climb.id}"
+    else 
+      flash[:error] = "ERROR: Enter climb name, location, and status."
+      redirect "/climbs/#{@climb.id}/edit"
     end
   end
   
