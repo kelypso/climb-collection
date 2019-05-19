@@ -14,14 +14,10 @@
   <input type="text" name="location" id="location" placeholder="crag, city, state" value="<%= @climb.location %>">
   <br><br>
   <label for="status">Status: </label> <br>
-  <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Project <br>
-  <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Send <br>
-  <input type="radio" name="status" id="status" value="<%= @climb.status %>"> Flash
+  <input type="text" name="status" id="status" placeholder="project, send, flash" value="<%= @climb.status %>">
   <br><br>
   <label for="category">Category: </label> <br>
-  <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Boulder <br>
-  <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Sport <br>
-  <input type="radio" name="category" id="category" value="<%= @climb.category %>"> Trad
+  <input type="text" name="category" id="category" placeholder="boulder, sport, trad" value="<%= @climb.category %>">
   <br><br>
   <label for="notes">Notes: </label>
   <textarea id="notes" name="notes" rows="5" cols="30" placeholder="Enter notes here" value="<%= @climb.notes %>"></textarea>
