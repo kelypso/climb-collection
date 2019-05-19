@@ -1,5 +1,3 @@
-require 'pry'
-
 class ClimbsController < ApplicationController
 
   get '/home' do
@@ -55,7 +53,6 @@ class ClimbsController < ApplicationController
   end
 
   patch '/climbs/:id' do # NOT WORKING
-    binding.pry
     @climb = Climb.find_by_id(params[:id])
     if logged_in? && params[:name] != "" && params[:location] != "" && params[:status]  != ""
       @climb.update(name: params[:name], grade: params[:grade], location: params[:location], status: params[:status], category: params[:category], notes: params[:notes])
