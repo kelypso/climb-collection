@@ -26,6 +26,7 @@ class ClimbsController < ApplicationController
     if logged_in? && params[:name] != "" && params[:location] != "" && params[:status]  != ""
       @climb = Climb.create(name: params[:name], grade: params[:grade], location: params[:location], category: params[:category], status: params[:status], notes: params[:notes])
       @user.climbs << @climb
+      # binding.pry - notes showing up here
       redirect "/climbs/#{@climb.id}"
     else 
       flash[:error] = "ERROR: Enter climb name, location, and status."
@@ -48,6 +49,7 @@ class ClimbsController < ApplicationController
       redirect '/login'
     else
       @climb = current_user.climbs.find_by_id(params[:id])
+      # binding.pry - notes are still showing up here
       erb :'/climbs/edit'
     end
   end

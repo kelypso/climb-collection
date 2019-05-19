@@ -1,12 +1,12 @@
 class CreateClimbsTable < ActiveRecord::Migration
   def change
-    create_table :climbs do |c|
+    create_table :climbs do |c| 
       c.string :name 
       c.string :grade 
       c.string :location 
       c.string :category 
       c.string :status 
-      c.string :notes 
+      c.text :notes 
       c.integer :user_id
     end
   end
