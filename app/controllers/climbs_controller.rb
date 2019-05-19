@@ -33,7 +33,7 @@ class ClimbsController < ApplicationController
     end
   end
   
-  get '/climbs/:id' do # should show specific climb page, but keeps showing first climb only
+  get '/climbs/:id' do
     if !logged_in?
       redirect '/login'
     else
@@ -43,7 +43,7 @@ class ClimbsController < ApplicationController
     end
   end
 
-  get '/climbs/:id/edit' do # NOT WORKING
+  get '/climbs/:id/edit' do 
     if !logged_in?
       redirect '/login'
     else
