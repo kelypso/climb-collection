@@ -53,11 +53,10 @@ class ClimbsController < ApplicationController
   end
 
   patch '/climbs/:id' do # NOT WORKING
-    @climb = current_user.climbs.find_by_id(params[:id])
+    @climb = Climb.find_by_id(params[:id])
     if logged_in? && params[:name] != "" && params[:location] != "" && params[:status]  != ""
-      @climb = Climb.update(name: params[:name], grade: params[:grade], location: params[:location], status: params[:status], category: params[:category], notes: params[:notes])
+      @climb.update(name: params[:name], grade: params[:grade], location: params[:location], status: params[:status], category: params[:category], notes: params[:notes])
       @climb.save
-      @user.climbs << @climb
       redirect "/climbs/#{@climb.id}"
     else 
       flash[:error] = "ERROR: Enter climb name, location, and status."
