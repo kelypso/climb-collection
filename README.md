@@ -5,11 +5,12 @@ ClimbTime's rock climbing collection allows users to create an account, log in, 
 ## Installation
 
 `clone repo`
+
 `bundle install`
 
 ## Usage
 
-`Run shotgun`
+`execute shotgun`
 
 ## Development
 
