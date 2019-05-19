@@ -70,7 +70,7 @@ class ClimbsController < ApplicationController
       @climb.delete
       redirect '/home'
     else
-      redirect "/failure"
+      redirect '/failure'
     end
   end
 
